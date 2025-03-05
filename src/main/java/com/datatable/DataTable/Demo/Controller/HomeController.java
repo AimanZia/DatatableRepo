@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -37,5 +38,19 @@ public class HomeController {
 
         return ResponseEntity.ok(dataList);
         
+    }
+
+    @GetMapping("/getMaturityScore")
+    @ResponseBody
+    public Map<String, Double> getMaturityScore() throws InterruptedException {
+        Thread.sleep(10000);
+        // Generate a random maturity score between 0 and 10 for demo purposes
+        double maturityScore = Math.round((new Random().nextDouble() * 10) * 10.0) / 10.0;
+
+        // Create a response map
+        Map<String, Double> response = new HashMap<>();
+        response.put("maturity_score", maturityScore);
+
+        return response;
     }
 }
